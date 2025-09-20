@@ -1277,7 +1277,7 @@ bool Expression::_execute(const Array &p_inputs, Object *p_instance, Expression:
 			}
 
 			bool valid = true;
-			Variant::evaluate(op->op, a, b, r_ret, valid);
+			Variant::evaluate(op->op, a.booleanize(), b.booleanize(), r_ret, valid);
 			if (!valid) {
 				r_error_str = vformat(RTR("Invalid operands to operator %s, %s and %s."), Variant::get_operator_name(op->op), Variant::get_type_name(a.get_type()), Variant::get_type_name(b.get_type()));
 				return true;

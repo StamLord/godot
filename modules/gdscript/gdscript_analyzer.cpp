@@ -3111,7 +3111,7 @@ void GDScriptAnalyzer::reduce_binary_op(GDScriptParser::BinaryOpNode *p_binary_o
 		p_binary_op->is_constant = true;
 		if (p_binary_op->variant_op < Variant::OP_MAX) {
 			bool valid = false;
-			Variant::evaluate(p_binary_op->variant_op, p_binary_op->left_operand->reduced_value, p_binary_op->right_operand->reduced_value, p_binary_op->reduced_value, valid);
+			Variant::evaluate(p_binary_op->variant_op, p_binary_op->left_operand->reduced_value.booleanize(), p_binary_op->right_operand->reduced_value.booleanize(), p_binary_op->reduced_value, valid);
 			if (!valid) {
 				if (p_binary_op->reduced_value.get_type() == Variant::STRING) {
 					push_error(vformat(R"(%s in operator %s.)", p_binary_op->reduced_value, Variant::get_operator_name(p_binary_op->variant_op)), p_binary_op);
